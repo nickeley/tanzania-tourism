@@ -1,16 +1,28 @@
-# ds-modeling-pipeline
-Skeleton project for building a simple model in python script
-This is the simplest way to do it. We train a simple model in the jupyter notebook, where we select only some features and do minimal cleaning. The output is then stored in simple python scripts.
+# Tanzania Tourism Prediction
+The Tanzanian tourism sector plays a significant role in the Tanzanian economy, contributing about 17% to the country’s GDP and 25% of all foreign exchange revenues. The sector, which provides direct employment for more than 600,000 people and up to 2 million people indirectly, generated approximately $2.4 billion in 2018 according to government statistics. Tanzania received a record 1.1 million international visitor arrivals in 2014, mostly from Europe, the US and Africa.
 
-Data used is the  [coffee quality dataset](https://github.com/jldbc/coffee-quality-database).
+Tanzania is the only country in the world which has allocated more than 25% of its total area for wildlife, national parks, and protected areas.There are 16 national parks in Tanzania, 28 game reserves, 44 game-controlled areas, two marine parks and one conservation area.
 
-##
-Requirements:
+The objective of this project is to develop a machine learning model to predict what a tourist will spend when visiting Tanzania.The model can be used by different tour operators and the Tanzania Tourism Board to automatically help tourists across the world estimate their expenditure before visiting Tanzania.
+
+</br>
+
+
+The data for this project can be found on Zindi: **[Data](https://zindi.africa/competitions/tanzania-tourism-prediction)**.
+
+</br>
+
+## Important files
+Jupyter Notebook with EDA on the data and Machine Learning Model can be found here: **[Jupyter Notebook](EDA-tanzania-tourism.ipynb)**.
+</br>
+The presentation can be found here: **[Presentation](Tanzania_Tourism_Presentation.pdf)**.
+
+</br>
+
+## Requirements:
 - pyenv with Python: 3.9.4
 
 ### Environment
-
-Same procedure as last time...
 
 Use the requirements file in this repo to create a new environment.
 
@@ -30,7 +42,9 @@ If You encounter errors related to statsmodels, try:
 ```BASH
 OPENBLAS="$(brew --prefix openblas)" pip install numpy statsmodels
 ```
+</br>
 
+## The automation script will be added later:
 ## Usage
 
 In order to train the model and store test data in the data folder and the model in models run:
