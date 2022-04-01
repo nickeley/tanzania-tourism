@@ -1,11 +1,10 @@
 import sys
 import pandas as pd
 import pickle
-from sklearn.metrics import mean_squared_error
 import warnings
 warnings.filterwarnings('ignore')
 
-from feature_engineering import fill_missing_values, drop_column, transform_altitude
+from feature_engineering import  calculate_metrics, remove_outliers, log_transform_target, inverse_log_transform_target, impute_package_columns, drop_package_columns, create_preprocessor
 
 print('Number of arguments:', len(sys.argv), 'arguments.')
 print('Argument List:', str(sys.argv)) 
@@ -22,11 +21,11 @@ y_test = pd.read_csv(y_test_path)
 
 #feature eng on test data
 print("Feature engineering")
-X_test = transform_altitude(X_test)
-X_test = drop_column(X_test, col_name='Unnamed: 0')
-X_test = drop_column(X_test, col_name='Quakers')
-X_test = fill_missing_values(X_test)
+#X_test = impute_package_columns(X_test)
+X_train = drop_package_columns(X_test)
+y_test_log = log_transform_target(y_test)
 
-y_test_pred = loaded_model.predict(X_test)
-mse_test = mean_squared_error(y_test, y_test_pred)
-print (f"MSE on test is: {mse_test}")
+y_test_pred_log = loaded_model.predict(X_test)
+y_test_pred = inverse_log_transform_target(y_test_pred_log)
+
+calculate_metrics(y_test, y_test_pred, True, False)

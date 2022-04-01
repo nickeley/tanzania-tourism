@@ -9,43 +9,56 @@ The objective of this project is to develop a machine learning model to predict 
 
 
 The data for this project can be found on Zindi: **[Data](https://zindi.africa/competitions/tanzania-tourism-prediction)**.
+</br>
+Please put the data in the folder "data/original_zindi_data"
 
 </br>
 
-## Important files
-Jupyter Notebook with EDA on the data and Machine Learning Model can be found here: **[Jupyter Notebook](EDA-tanzania-tourism.ipynb)**.
-</br>
-The presentation can be found here: **[Presentation](Tanzania_Tourism_Presentation.pdf)**.
-
-</br>
 
 ## Requirements:
 - pyenv with Python: 3.9.4
+</br>
+</br>
 
-### Environment
 
+## Environment to run the tensorflow part
 Use the requirements file in this repo to create a new environment.
+</br>
+To run the tensorflow part, you have to install hdf5:
 
 ```BASH
-make setup 
+ brew install hdf5
+```
+With the system setup like that, you can go and create your environment and install tensorflow
 
-#or 
-
+```BASH
 pyenv local 3.9.4
 python -m venv .venv
+source .venv/bin/activate
+export HDF5_DIR=/opt/homebrew/Cellar/hdf5/1.12.1
+
 pip install --upgrade pip
+pip install --no-binary=h5py h5py
 pip install -r requirements.txt
 ```
 
-If You encounter errors related to statsmodels, try:
-
+If you do not want to run the neural network, you can just use the Makefile:
 ```BASH
-OPENBLAS="$(brew --prefix openblas)" pip install numpy statsmodels
+make setup 
 ```
+
+
 </br>
 
-## The automation script will be added later:
-## Usage
+## Notebooks and other files in this repository
+Jupyter Notebook with EDA on the data and Machine Learning Model can be found here: **[EDA Notebook](EDA-tanzania-tourism.ipynb)**.
+</br>
+An additional notebook with a Neural Network can be found here: **[Neural Network Notebook](tanzania-tourism-neural-network.ipynb)**.
+</br>
+The presentation can be found here: **[Presentation](Tanzania_Tourism_Presentation.pdf)**.
+</br></br>
+
+## Usage of scripts
 
 In order to train the model and store test data in the data folder and the model in models run:
 
@@ -59,9 +72,9 @@ python train.py
 In order to test that predict works on a test set you created run:
 
 ```bash
-python predict.py models/linear_regression_model.sav data/X_test.csv data/y_test.csv
+python predict.py models/adaboost_model.sav data/X_test.csv data/y_test.csv
 ```
+</br>
 
-## Limitations
-
-development libraries are part of the production environment, normally these would be separate as the production code should be as slim as possible
+## Remarks
+To reduce calculation time, a Randomized Search is used in the EDA Notebook and also in the Python Script. For this reason, the results of the Notebook and the Script can differ, so keep that in mind when trying things out.
